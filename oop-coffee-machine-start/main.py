@@ -29,6 +29,6 @@ def init():
         else:
             order = current_menu.find_drink(new_order)
             order and process_order(order)
-print('test')
+
 
 init()
