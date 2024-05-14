@@ -11,22 +11,18 @@ import random
 # rare to see in python, not good practice
 
 import turtle as t
-colors = [
-    "Blue",
-    "DeepPink1",
-    "Cyan",
-    "chartreuse",
-    "firebrick",
-    "violet",
-    "yellow",
-    "salmon1",
-    "navy",
-    "orange",
-    "grey"
-]
+
 tim = t.Turtle()
 tim.shape("turtle")
+t.colormode(255)
 
+def random_color():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    color_tuple = (r, g, b)
+    print(color_tuple)
+    return color_tuple
 # for _ in range(0, 4):
 #     tim.color("DeepPink")
 #     tim.forward(100)
@@ -47,7 +43,7 @@ tim.shape("turtle")
 # tim.forward(100)
 # tim.right(120)
 # tim.forward(100)
-tim.pensize(20)
+tim.pensize(1)
 # for num in range(3, 11):
 #     angle = 360/num
 #     tim.pencolor(colors[num - 3])
@@ -57,21 +53,31 @@ tim.pensize(20)
 
 i = 0
 tim.speed("fastest")
-while i < 1000:
-    if i % 10 == 0:
-        print( i)
-    color = random.choice(colors)
-    direction = random.randint(0,1)
-    angle = random.randint(0, 2) * 90
-    if direction == 0:
-        tim.right(angle)
-        print("right",angle)
-    else:
-        tim.left(angle)
-        print("left", angle)
-    tim.pencolor(color)
-    tim.forward(25)
-    i += 1
+tim.circle(100)
+tim.setheading(0)
+size_of_gap = .1
+for _ in range(int(360/size_of_gap)):
+    tim.pensize(random.randint(0, 30))
+    print(tim.heading())
+    tim.pencolor(random_color())
+    tim.circle(100)
+    tim.setheading(tim.heading() + size_of_gap)
+# while i < 1000:
+#     tim_heading = 0
+#     if i % 10 == 0:
+#         print( i)
+#
+#     direction = random.randint(0,1)
+#     angle = random.randint(0, 2) * 90
+#     if direction == 0:
+#         tim.right(angle)
+#         print("right",angle)
+#     else:
+#         tim.left(angle)
+#         print("left", angle)
+#     tim.pencolor(random_color())
+#     tim.forward(25)
+#     i += 1
 
 screen = Screen()
 screen.exitonclick()

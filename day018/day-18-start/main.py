@@ -73,9 +73,5 @@ while i < 1000:
     tim.forward(25)
     i += 1
 
-
-
-
-
 screen = Screen()
 screen.exitonclick()
