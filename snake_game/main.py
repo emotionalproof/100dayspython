@@ -2,10 +2,10 @@ from turtle import Screen, Turtle
 import random
 
 screen = Screen()
+
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("My Snake Game")
-# screen.delay(0)
 dots = []
 heading = 180
 current_y = 0
@@ -16,6 +16,7 @@ alive = True
 target_x = 100
 target_y = 100
 target = {}
+
 
 def change_heading_right():
     global heading
@@ -48,38 +49,6 @@ screen.onkey(change_heading_right, "Right")
 screen.listen()
 
 
-def move_target():
-    global target
-    global target_x
-    global target_y
-    target_x = random.randint(-265, 265)
-    target_y = random.randint(-265, 265)
-    new_target = Turtle()
-    new_target.penup()
-    new_target.hideturtle()
-    new_target.teleport(target_x, target_y)
-    new_target.showturtle()
-    new_target.color("blue")
-    new_target.shape("square")
-
-    target = new_target
-
-
-def next_position():
-    global heading
-    global current_y
-    global current_x
-    step_size = 21
-    if heading == 180:
-        current_x -= step_size
-    elif heading == 0:
-        current_x += step_size
-    elif heading == 90:
-        current_y += step_size
-    else:
-        current_y -= step_size
-
-
 def create_square():
     turtle_instance = Turtle()
     turtle_instance.penup()
@@ -92,6 +61,21 @@ def create_square():
     check_length()
 
 
+def next_position():
+    global heading
+    global current_y
+    global current_x
+    step_size = 20
+    if heading == 180:
+        current_x -= step_size
+    elif heading == 0:
+        current_x += step_size
+    elif heading == 90:
+        current_y += step_size
+    else:
+        current_y -= step_size
+
+
 def check_length():
     global length
     global dots
@@ -99,6 +83,10 @@ def check_length():
         index_to_remove = len(dots) - length
         dots[index_to_remove].hideturtle()
     next_position()
+
+
+def check_coordinates():
+    check_walls()
 
 
 def check_walls():
@@ -121,26 +109,42 @@ def check_self():
         dot_y = dot.ycor()
         if dot_x == current_x and dot_y == current_y:
             alive = False
-            print(index)
-            print(current_x, current_y, dot_x, dot_y)
             print("You hit yourself!")
         else:
             check_target()
 
 
+def move_target():
+    global target
+    global target_x
+    global target_y
+    target_x = random.randint(-265, 265)
+    target_x = target_x - (target_x % 20)
+    target_y = random.randint(-265, 265)
+    target_y = target_y - (target_y % 20)
+    new_target = Turtle()
+    new_target.penup()
+    new_target.hideturtle()
+    new_target.teleport(target_x, target_y)
+    new_target.showturtle()
+    new_target.color("blue")
+    new_target.shape("square")
+    target = new_target
+
+
 def check_target():
     global length
     global target
-    x_range = range(current_x - 20, current_x + 20)
-    y_range = range(current_y - 20, current_y + 20)
-    if target_x in x_range and target_y in y_range:
+    last_dot = dots[len(dots) - 1]
+    dotx = last_dot.xcor()
+    doty = last_dot.ycor()
+    if target_x == dotx and target_y == doty:
         length += 1
         target.hideturtle()
         move_target()
 
 
-def check_coordinates():
-    check_walls()
+
 
 
 move_target()
