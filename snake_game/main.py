@@ -1,11 +1,14 @@
+import turtle
 from turtle import Screen, Turtle
 import random
+import time
 
 screen = Screen()
 
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("My Snake Game")
+turtle.speed(9)
 dots = []
 heading = 180
 current_y = 0
@@ -76,6 +79,7 @@ def next_position():
         current_y -= step_size
 
 
+
 def check_length():
     global length
     global dots
@@ -91,10 +95,9 @@ def check_coordinates():
 
 def check_walls():
     global alive
-    if current_x > 290 or current_x < -280:
+    if current_x > 290 or current_x < -280 or current_y > 290 or current_y < -290:
         alive = False
-    elif current_y > 290 or current_y < -290:
-        alive = False
+        print("You hit the wall")
     elif len(dots) >= length:
         check_self()
 
@@ -148,6 +151,7 @@ def check_target():
 
 
 move_target()
+
 
 while alive:
     check_coordinates()
