@@ -1,5 +1,5 @@
 import turtle
-from food import Food
+# from food import Food
 
 class Snake:
     def __init__(self):
@@ -8,8 +8,9 @@ class Snake:
         self.starting_positions = [(0, 0), (-20, 0), (-40, 0)]
         self.current_x = 0
         self.current_y = 0
-        self.food = Food()
-        self.round =
+        # self.food = Food()
+        self.create_snake()
+        self.alive = True
 
     def create_segment(self, color, position):
         new_segment = turtle.Turtle('square')
@@ -55,21 +56,37 @@ class Snake:
 
     def check_walls(self):
         if self.current_x > 300 or self.current_x < -300 or self.current_y > 300 or self.current_y < -300:
-            game_is_on = False
             print("You hit the wall")
+            self.alive = False
 
     def check_self(self):
-        for index in range(1, len(self.segments)):
+        for index in range(2, len(self.segments) - 1):
             dot = self.segments[index]
             dot_x = dot.xcor()
             dot_y = dot.ycor()
             if dot_x == self.segments[0].xcor() and dot_y == self.segments[0].ycor():
-                game_is_on = False
                 print("You hit yourself!")
+                self.alive = False
             # else:
             #     check_target()
 
     def check_target(self):
         check = self.food.check_target(self.segments)
         if check:
-            self.segments.append(check)
+            print('target')
+            # self.segments.append(check)
+
+    def add_segment(self):
+        print('add seg')
+        last_x = self.segments[len(self.segments) - 1].xcor()
+        last_y = self.segments[len(self.segments) - 1].ycor()
+        next_segment = self.create_segment(color='white', position=(last_x, last_y))
+        self.segments.append(next_segment)
+
+    def update_positions(self):
+        for seg_num in range(len(self.segments) - 1, 0, -1):
+            new_x = self.segments[seg_num - 1].xcor()
+            new_y = self.segments[seg_num - 1].ycor()
+            self.segments[seg_num].goto(new_x, new_y)
+
+        self.segments[0].goto(self.current_x, self.current_y)

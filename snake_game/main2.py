@@ -1,9 +1,12 @@
 from turtle import Screen, Turtle
 import random
 import time
-import snake
+from snake import Snake
+from scoreboard import Scoreboard
+from food import Food
 
-snake = snake.Snake()
+
+
 screen = Screen()
 
 screen.setup(width=600, height=600)
@@ -11,6 +14,9 @@ screen.bgcolor("black")
 screen.title("My Snake Game")
 screen.tracer(0)
 
+snake = Snake()
+scoreboard = Scoreboard()
+food = Food()
 screen.onkey(snake.change_heading_left, "Left")
 screen.onkey(snake.change_heading_up, "Up")
 screen.onkey(snake.change_heading_down, "Down")
@@ -21,42 +27,22 @@ screen.listen()
 game_is_on = True
 
 
+def check_target(segments):
+    if food.check_target(segments):
+        snake.add_segment()
+        scoreboard.score += 1
 
-
-
-
-
-
-
-
-
-
-
-
-init()
-
-
-while game_is_on:
-
-    check_self()
-    check_walls()
+while snake.alive:
+    snake.check_self()
+    snake.check_walls()
+    check_target( segments=snake.segments)
     screen.update()
     time.sleep(0.1)
-    for seg_num in range(len(segments) - 1, 0, -1):
-        new_x = segments[seg_num - 1].xcor()
-        new_y = segments[seg_num - 1].ycor()
-        segments[seg_num].goto(new_x, new_y)
-    next_position()
-    segments[0].goto(current_x, current_y)
-    check_target()
-
-
-
-
-
-
+    snake.update_positions()
+    snake.next_position()
+    # game_is_on = snake.check_target()
 
 
 screen.bye()
 
-print(f"You made it to level {len(segments) - 2}!")
+print(f"You made it to level {scoreboard.score}!")
