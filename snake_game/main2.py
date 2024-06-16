@@ -22,7 +22,7 @@ screen.onkey(snake.change_heading_up, "Up")
 screen.onkey(snake.change_heading_down, "Down")
 screen.onkey(snake.change_heading_right, "Right")
 screen.listen()
-
+print('test')
 
 game_is_on = True
 
