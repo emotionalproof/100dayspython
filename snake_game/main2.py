@@ -31,6 +31,7 @@ def check_target(segments):
     if food.check_target(segments):
         snake.add_segment()
         scoreboard.score += 1
+        print('test')
 
 while snake.alive:
     snake.check_self()
