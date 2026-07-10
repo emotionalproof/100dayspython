@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8139ff3c-8350-480a-9570-f6d3e4a21701" name="Changes" comment="" />
+    <list default="true" id="45ab150c-244f-459e-953e-d6b484ef8ee3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../day019-start/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../day019-start/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,9 +16,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
+  &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="2g9RVBFqhfYQy8hsP17hXlmOlb2" />
+  <component name="ProjectId" id="2hKsrNY8GDrKxTC8X9locYTqflp" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -24,30 +26,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/ft/Documents/Code/course_notes/100daysofpython/day019-start"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
-      </set>
-    </attachedChunks>
-  </component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8139ff3c-8350-480a-9570-f6d3e4a21701" name="Changes" comment="" />
-      <created>1715107827396</created>
+      <changelist id="45ab150c-244f-459e-953e-d6b484ef8ee3" name="Changes" comment="" />
+      <created>1717354301990</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1715107827396</updated>
+      <updated>1717354301990</updated>
     </task>
     <servers />
   </component>

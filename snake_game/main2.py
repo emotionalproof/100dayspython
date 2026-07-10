@@ -1,49 +1,43 @@
-from turtle import Screen, Turtle
-import random
-import time
+from turtle import Screen
 from snake import Snake
-from scoreboard import Scoreboard
 from food import Food
-
-
-
+from scoreboard import Scoreboard
+import time
+MAX = 290
 screen = Screen()
-
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("My Snake Game")
 screen.tracer(0)
 
 snake = Snake()
-scoreboard = Scoreboard()
 food = Food()
-screen.onkey(snake.change_heading_left, "Left")
-screen.onkey(snake.change_heading_up, "Up")
-screen.onkey(snake.change_heading_down, "Down")
-screen.onkey(snake.change_heading_right, "Right")
+scoreboard = Scoreboard()
+
 screen.listen()
-print('test')
+screen.onkey(snake.up, "Up")
+screen.onkey(snake.down, "Down")
+screen.onkey(snake.left, "Left")
+screen.onkey(snake.right, "Right")
 
 game_is_on = True
-
-
-def check_target(segments):
-    if food.check_target(segments):
-        snake.add_segment()
-        scoreboard.score += 1
-        print('test')
-
-while snake.alive:
-    snake.check_self()
-    snake.check_walls()
-    check_target( segments=snake.segments)
+while game_is_on:
     screen.update()
     time.sleep(0.1)
-    snake.update_positions()
-    snake.next_position()
-    # game_is_on = snake.check_target()
+    snake.move()
 
+    if snake.head.distance(food) < 15:
+        food.refresh()
+        snake.extend()
+        scoreboard.increase_score()
 
-screen.bye()
+    if snake.head.xcor() > MAX or snake.head.xcor() < -MAX or snake.head.ycor() > MAX or snake.head.ycor() < -MAX:
+        game_is_on = False
+        scoreboard.game_over()
 
-print(f"You made it to level {scoreboard.score}!")
+    for segment in snake.segments[1:]:
+        if snake.head.distance(segment) < 10:
+            game_is_on = False
+            scoreboard.game_over()
+
+screen.exitonclick()
